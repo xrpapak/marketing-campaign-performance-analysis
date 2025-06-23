@@ -1,7 +1,7 @@
 
 # Marketing Campaign Performance Analysis
 
-This project analyzes the effectiveness of marketing campaigns using both SQL and Python, focusing on KPIs such as ROAS, CPA, Conversion Rate, and Customer Satisfaction. The goal was to extract meaningful insights from campaign-level data and visualize trends that support data-driven decisions in marketing strategy.
+This project analyzes marketing campaigns' effectiveness using SQL and Python, focusing on KPIs such as ROAS, CPA, Conversion Rate, and Customer Satisfaction. The goal was to extract meaningful insights from campaign-level data and visualize trends supporting data-driven marketing strategy decisions.
 
 ---
 
@@ -165,25 +165,25 @@ Outliers were also identified using z-score filtering in some KPIs (e.g., Revenu
 ### Visualizations
 
 - Barplot: Average KPIs per Subscription Tier  
-  _Image: `average_kpis_per_subscription_tier.png`_
+  _Image: `images/average_kpis_per_subscription_tier.png`_
 
 - Heatmap: Correlation matrix of marketing & product KPIs  
-  _Image: `correlation_matrix_marketing_product_kpis.png`_
+  _Image: `images/correlation_matrix_marketing_product_kpis.png`_
 
 - Lineplot: Discount Level vs Conversion Rate  
-  _Image: `discount_level_vs_conversion_rate.png`_
+  _Image: `images/discount_level_vs_conversion_rate.png`_
 
 - Bubble Plot: Perfect Campaigns (Low CPA, High ROAS, High Satisfaction)  
-  _Image: `highlight_perfect_campaigns.png`_
+  _Image: `images/highlight_perfect_campaigns.png`_
 
 - Histogram + KDE: Revenue Distribution  
-  _Image: `revenue_generated_distribution.png`_
+  _Image: `images/revenue_generated_distribution.png`_
 
 - Boxplot: ROAS by Customer Satisfaction  
-  _Image: `roas_distribution_by_customer_satisfaction.png`_
+  _Image: `images/roas_distribution_by_customer_satisfaction.png`_
 
 - Bubble Plot: ROAS vs CPA by Subscription Tier  
-  _Image: `roas_vs_cpa.png`_
+  _Image: `images/roas_vs_cpa.png`_
 
 ---
 
