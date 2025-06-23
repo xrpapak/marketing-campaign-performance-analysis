@@ -1,0 +1,206 @@
+SELECT
+  Subscription_Tier,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(AVG(Conversion_Rate), 2) AS Avg_Conversion_Rate,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  Subscription_Tier
+ORDER BY
+  Avg_ROAS DESC;
+
+SELECT
+  Common_Keywords,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(AVG(Conversion_Rate), 2) AS Avg_Conversion_Rate,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  Common_Keywords
+ORDER BY
+  Avg_ROAS DESC;
+
+SELECT
+  CASE
+    WHEN Discount_Level < 20 THEN 'Low (0–19%)'
+    WHEN Discount_Level BETWEEN 20 AND 39 THEN 'Medium (20–39%)'
+    WHEN Discount_Level BETWEEN 40 AND 59 THEN 'High (40–59%)'
+    ELSE 'Extreme (60%+)'
+  END AS Discount_Category,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  Discount_Category
+ORDER BY
+  Discount_Category;
+
+SELECT
+  CASE
+    WHEN Subscription_Length <= 6 THEN '0–6 months'
+    WHEN Subscription_Length BETWEEN 7 AND 12 THEN '7–12 months'
+    WHEN Subscription_Length BETWEEN 13 AND 24 THEN '13–24 months'
+    ELSE '25+ months'
+  END AS Subscription_Duration_Group,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  Subscription_Duration_Group
+ORDER BY
+  Subscription_Duration_Group;
+
+SELECT
+  CASE
+    WHEN CPA < 50 THEN 'Low CPA (<50€)'
+    WHEN CPA BETWEEN 50 AND 149 THEN 'Medium CPA (50–149€)'
+    WHEN CPA BETWEEN 150 AND 299 THEN 'High CPA (150–299€)'
+    ELSE 'Extreme CPA (300€+)'
+  END AS CPA_Bucket,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  CPA_Bucket
+ORDER BY
+  CPA_Bucket;
+
+SELECT
+  Subscription_Tier,
+  Common_Keywords,
+  Discount_Level,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction,
+  COUNT(*) AS High_ROAS_Campaigns
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+WHERE
+  ROAS > 8
+GROUP BY
+  Subscription_Tier, Common_Keywords, Discount_Level
+ORDER BY
+  High_ROAS_Campaigns DESC
+
+SELECT
+  Subscription_Tier,
+  Common_Keywords,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(CPA), 2) AS Avg_CPA
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY
+  Subscription_Tier, Common_Keywords
+ORDER BY
+  Avg_Satisfaction DESC
+
+SELECT
+  COUNTIF(ROI < 1) AS Unprofitable_Campaigns,
+  COUNT(*) AS Total_Campaigns,
+  ROUND(COUNTIF(ROI < 1) / COUNT(*) * 100, 2) AS Percent_Unprofitable
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+
+SELECT
+  Common_Keywords,
+  COUNT(*) AS Count_HighROAS
+FROM (
+  SELECT *
+  FROM `oceanic-craft-463807-d1.marketing.marketing_kpis`
+  ORDER BY ROAS DESC
+  LIMIT 1000
+)
+GROUP BY Common_Keywords
+ORDER BY Count_HighROAS DESC
+
+SELECT
+  Discount_Level,
+  ROUND(AVG(Conversion_Rate), 3) AS Avg_Conversion_Rate,
+  COUNT(*) AS Campaigns
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis`
+GROUP BY Discount_Level
+ORDER BY Discount_Level
+
+SELECT
+  Bundle_Price,
+  ROUND(AVG(Revenue_per_Unit), 2) AS Avg_Revenue_per_Unit,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  COUNT(*) AS Campaigns
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis_v2`
+GROUP BY
+  Bundle_Price
+HAVING
+  AVG(Revenue_per_Unit) > 1000
+ORDER BY
+  Avg_Revenue_per_Unit DESC
+
+SELECT
+  Campaign_ID,
+  ROAS,
+  Customer_Satisfaction_Post_Refund,
+  CPA,
+  Revenue_Generated
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis_v2`
+WHERE
+  ROAS > 6
+  AND Customer_Satisfaction_Post_Refund < 2
+ORDER BY
+  ROAS DESC
+
+SELECT
+  Discount_Level,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis_v2`
+GROUP BY
+  Discount_Level
+ORDER BY
+  Avg_Satisfaction DESC
+
+SELECT
+  Common_Keywords,
+  ROUND(AVG(CPA), 2) AS Avg_CPA,
+  ROUND(AVG(ROAS), 2) AS Avg_ROAS,
+  ROUND(AVG(Customer_Satisfaction_Post_Refund), 2) AS Avg_Satisfaction
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis_v2`
+GROUP BY
+  Common_Keywords
+ORDER BY
+  Avg_CPA ASC
+
+SELECT
+  Campaign_ID,
+  CPA,
+  ROAS,
+  Customer_Satisfaction_Post_Refund,
+  Revenue_Generated,
+  Discount_Level,
+  Common_Keywords,
+  Subscription_Tier
+FROM
+  `oceanic-craft-463807-d1.marketing.marketing_kpis_v2`
+WHERE
+  CPA < 50
+  AND ROAS > 6
+  AND Customer_Satisfaction_Post_Refund > 2.5
+ORDER BY
+  ROAS DESC
