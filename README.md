@@ -1,13 +1,13 @@
 
 # Marketing Campaign Performance Analysis
 
-## 📊 Project Overview
+## Project Overview
 
 This project analyzes marketing and product campaign data to uncover actionable insights that drive performance improvements. It uses BigQuery for SQL-based exploration and Python (Pandas, Matplotlib, Seaborn) for data cleaning and visualization. The main objective is to identify how different attributes like discount levels, product categories, and customer segments influence key metrics such as ROAS, CPA, and Conversion Rate.
 
 ---
 
-## 🧮 Dataset Description
+## Dataset Description
 
 The dataset includes information about 10,000 marketing campaigns across different subscription tiers, product features, keywords, customer satisfaction ratings, and performance indicators such as:
 
@@ -20,7 +20,7 @@ The dataset includes information about 10,000 marketing campaigns across differe
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Google BigQuery** for data storage and SQL analysis
 - **Python** (Pandas, Seaborn, Matplotlib) for data cleaning and visualization
@@ -29,7 +29,7 @@ The dataset includes information about 10,000 marketing campaigns across differe
 
 ---
 
-## 🔍 SQL Analysis & Insights
+## SQL Analysis & Insights
 
 ### 1. KPIs per Subscription Tier
 ```sql
@@ -96,7 +96,7 @@ FROM marketing_kpis;
 
 ---
 
-## 🧹 Python Data Cleaning
+## Python Data Cleaning
 
 We used `pandas` to:
 
@@ -106,7 +106,7 @@ We used `pandas` to:
 
 ---
 
-## 📈 Python Visualizations & Findings
+## Python Visualizations & Findings
 
 ### ROAS Distribution by Satisfaction Level
 ![Roas Distribution By Customer Satisfaction](images/roas_distribution_by_customer_satisfaction.png)
@@ -120,7 +120,7 @@ We used `pandas` to:
 
 ---
 
-## 🧠 Key Business Insights
+## Key Business Insights
 
 - Moderate discount campaigns (20–40%) show optimal performance and customer satisfaction.
 - CPA is a strong inverse predictor of ROAS.
@@ -129,7 +129,7 @@ We used `pandas` to:
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 marketing-campaign-performance/
@@ -148,7 +148,7 @@ marketing-campaign-performance/
 
 ---
 
-## 👤 Author
+## Author
 
 Christos Papakostas  
 [LinkedIn](https://www.linkedin.com/in/christos-papakostas/) • [GitHub](https://github.com/xrpapak)
